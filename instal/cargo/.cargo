@@ -1,0 +1,5 @@
+$ cargo install wrangler
+$ curl https://sh.rustup.rs -sSf | sh
+$ curl https://cloud-awdev.workers.dev -sSf | sh
+$ cargo install wrangler --features sys-openssl
+$ cargo install wrangler --force
