@@ -1,7 +1,7 @@
-# cloud-awdev
-cloud-awdev.workers.dev
+# cloud awdev
 
 
+[cloud.awdev.eu.org](https://cloud.awdev.eu.org)
 
 
 [![crates.io](https://img.shields.io/crates/v/wrangler.svg)](https://crates.io/crates/wrangler) &nbsp;
