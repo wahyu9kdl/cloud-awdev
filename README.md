@@ -9,198 +9,89 @@
 [![GitHub Actions - Test Status](https://github.com/cloudflare/wrangler/workflows/Tests/badge.svg)](https://github.com/cloudflare/wrangler/actions) &nbsp;
 [![GitHub Actions - Linter Status](https://github.com/cloudflare/wrangler/workflows/Linters/badge.svg)](https://github.com/cloudflare/wrangler/actions) &nbsp;
 
-`wrangler` is a CLI tool designed for folks who are interested in using [Cloudflare Workers](https://workers.cloudflare.com/).
+# Apa itu cloud?
 
-![Wrangler Demo](/wrangler-demo.gif)
+Kita semua pernah mendengar kata "cloud" ini. Namun bagi beberapa orang, istilah ini masih menjadi misteri. Pelajari mengapa "cloud" sangat penting bagi bisnis maupun pribadi.
 
-## Installation
 
-You have many options to install wrangler!
+## Cloud computing
 
-### Install with `npm`
+Cloud computing itu apa dan bagaimana cara kerjanya?
+Anda mungkin memiliki beberapa gambaran tentang apa itu cloud, dan layanan yang disediakannya, namun di sini kita akan melihat lebih dekat lagi bagaimana sebenarnya cara kerjanya dan mengapa cloud dalam waktu singkat telah menjadi hal yang sangat penting bagi kita. Ada kemungkinan meski Anda tidak tahu sama sekali apa itu layanan cloud computing, Anda mungkin suatu waktu pernah menggunakannya.
 
-We strongly recommend you install `npm` with a Node version manager like [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating), which puts the global `node_modules` in your home directory to eliminate permissions issues with `npm install -g`. Distribution-packaged `npm` installs often use `/usr/lib/node_modules` (which is root) for globally installed `npm` packages, and running `npm install -g` as `root` prevents `wrangler` from installing properly.
+"Cloud" adalah singkatan dari "cloud computing" atau komputasi awan, dan istilah ini merujuk pada tugas dan layanan yang disediakan atau di-hosting di internet atas dasar bayar sekali pakai. Orang mungkin sudah lama bisa menyimpan, mengoperasikan, dan mengelola data lewat internet, namun cloud computing merupakan layanan berbayar yang melakukan semua ini dalam skala yang jauh lebih besar.
 
+Pertama-tama, perlu dijelaskan bahwa cloud itu tidak semuanya virtual, dan meski file tidak disimpan secara langsung ke komputer Anda, file-file tersebut masih perlu dikaitkan dengan beberapa perangkat keras yang berada di suatu tempat di belahan dunia ini. Ketika Anda mengunggah sesuatu ke cloud, lewat layanan seperti Dropbox, file itu akan dikirim lewat internet ke server—sebuah server sungguhan yang berwujud. Penyedia layanan cloud memiliki ratusan dan ribuan server fisik, yang bersama-sama disebut sebagai "server farms" atau "ladang server" yang berlokasi di pusat data di seluruh dunia.
 
-Once you've installed `nvm` and configured your system to use the `nvm` managed node install, run:
+Jadi, dalam istilah yang paling sederhana, cloud merupakan sekumpulan server dan pusat data yang tersebar di seluruh dunia yang di dalamnya dapat menyimpan data kita.
 
-```bash
-npm i @cloudflare/wrangler -g
-```
+Pada intinya, cloud adalah sebuah unit penyimpanan digital yang dapat menyimpan semua file Anda; perbedaannya adalah bahwa kalau pada unit penyimpanan Anda harus hadir secara fisik untuk mengakses file-file Anda, pada cloud Anda dapat mengaksesnya dari perangkat apa saja sepanjang perangkat itu memiliki koneksi ke internet.
 
-If you are running an ARM based system (eg Raspberry Pi, Pinebook) you'll need to use the `cargo` installation method listed below to build wrangler from source.
+Agar lebih jelas, "cloud" itu bukanlah sebuah entitas tunggal yang kasat mata. Ia sedikit lebih abstrak. "Cloud" pada dasarnya adalah sebuah perumpamaan dari internet itu sendiri. Saat Anda menyimpan file di cloud, berarti Anda menyimpannya secara online. Siapa saja yang memiliki sumber daya dan infrastruktur dapat meng-hosting cloud mereka sendiri, namun ini bukanlah sebuah tugas yang mudah, dan tentu tidak murah. Jadi kalau kita bicara tentang layanan cloud, kita berbicara tentang layanan tingkat tinggi yang ditawarkan oleh penyedia seperti Dropbox.
 
-#### Specify binary location
+Agar memberi sudut pandang yang jelas, mari kita gunakan listrik sebagai contoh. Biaya memiliki generator pribadi di rumah Anda akan sangat mahal dan butuh pemeliharaan yang tinggi. Jadi, sebagai gantinya kita menggunakan layanan dari perusahaan listrik yang pada dasarnya mengoperasikan satu generator raksasa yang bisa diakses semua orang, dan kita semua hanya membayar apa yang kita pakai. Dalam arti yang serupa ini, akan jauh lebih efisien dan efektif secara biaya jika penyedia layanan cloud dapat meng-hosting dan menyimpan data Anda, alih-alih membuat infrastruktur sendiri.
 
-In case you need `wrangler`'s npm installer to place the binary in a non-default location (such as when using `wrangler` in CI), you can use the following configuration options to specify an install location:
+## Fungsi
 
-- Environment variable: `WRANGLER_INSTALL_PATH`
-- NPM configuration: `wrangler_install_path`
+Fungsi lain di luar layanan penyimpanan cloud
+Meski dalam pengertian paling sederhana cloud itu adalah solusi penyimpanan digital, cloud computing sebenarnya dapat dibagi menjadi tiga fungsi utama berbeda: model Infrastructure as a Service (IaaS) atau Infrastruktur sebagai Layanan, Platform as a Service (PaaS) atau Platform sebagai Layanan, dan Software as a Service (SaaS) atau Perangkat Lunak Sebagai Layanan.
 
-#### Specify binary site URL
+Infrastructure as a Service (IaaS) adalah penyedia layanan awan yang menawarkan ruang server mereka untuk berbagai kebutuhan, mulai dari penyimpanan data sampai hosting web. Dalam hal ini, Anda akan tetap mengelola dan memelihara data, situs web, atau aplikasinya, sementara penyedia layanan awan hanya menyewakan sumber daya komputasinya kepada Anda untuk melakukannya.
 
-In case you need to store/mirror binaries on premise you will need to specify where wrangler should search for them by providing any of the following:
+Menggunakan Dropbox untuk penyimpanan file adalah sebuah contoh dari IaaS. Anda dapat mengakses, mengubah, dan menambahkan data sesuka hati, sementara Dropbox menyediakan server untuk menampungnya.
 
-- Environment variable: `WRANGLER_BINARY_HOST`
-- NPM configuration: `wrangler_binary_host`
+Contoh lainnya adalah Netflix, yang menggunakan IaaS untuk mengelola secara efektif kumpulan data dalam jumlah sangat besar yang diakses secara terus menerus oleh pelanggan dari seluruh dunia, sehingga kita dapat mengakses konten dengan cepat, tanpa kita sendiri harus mengunduh file apa pun. Netflix pun tidak harus membuat pusat data raksasa untuk menyimpan katalog kontennya yang terus bertambah.
 
-### Install with `cargo`
+Sementara itu, hampir setiap situs web yang Anda kunjungi itu dihosting di awan berkat model Iaas.
 
-```bash
-cargo install wrangler
-```
+Platform as a Service (PaaS) serupa dengan IaaS, tetapi dengan sedikit lebih banyak kontrol oleh penyedia layanan awan. Di masa lalu, mengembangkan perangkat lunak dan mengujinya secara lokal merupakan pekerjaan yang mahal dari segi waktu, uang, dan ruang. PaaS menyediakan platform virtual untuk pengembangan dan pengujian backend, agar pemrogram memiliki kerangka kerja virtual yang dapat digunakan untuk mengembangkan perangkat lunak secara online, sedangkan semua server dan penyimpanannya masih ditangani oleh penyedia layanan. Jadi, alih-alih menghadapi risiko kerugian saat mengembangkan dan menguji secara langsung di perangkat, model Paas menawarkan solusi virtual.
 
-If you don't have `cargo` or `npm` installed, you will need to follow these [additional instructions](https://developers.cloudflare.com/workers/cli-wrangler/install-update/#manual-install).
+Software as a Service (SaaS) merujuk pada setiap perangkat lunak yang dijalankan melalui awan. Contohnya adalah Dropbox Paper. Dengan aplikasi ini, Anda dapat membuat, mengedit, membagikan, dan berkolaborasi mengerjakan file teks secara online, dan Anda tidak perlu menginstal dan menyiapkan aplikasi yang akan menghabiskan ruang di perangkat Anda—karena cloud menyediakan itu semua. Anda hanya tinggal mengakses aplikasi saat dibutuhkan, dan mengerjakan file dari perangkat mana pun. Contoh lain dari SaaS adalah ekstensi seperti Grammarly, yang berjalan secara online, langsung di browser web.
+Agar lebih mudah dipahami, model Iaas menawarkan kendali paling besar atas sumber daya Anda dan memberi admin degan layanan hosting dan penyimpanan. Model PaaS menawarkan kontrol lebih sedikit dan membutuhkan pengembang untuk mengembangkan, dan model Saas menawarkan kontrol paling sedikit dan disediakan kepada pengguna akhir untuk menggunakannya.
 
-### Install on Windows
+### Hybrid Cloud
 
-[perl is an external dependency of crate openssl-sys](https://github.com/sfackler/rust-openssl/blob/b027f1603189919d5f63c6aff483243aaa188568/openssl/src/lib.rs#L11-L15). If installing wrangler with cargo, you will need to have perl installed. We've tested with [Strawberry Perl](https://www.perl.org/get.html). If you instead install perl via scoop, you may need to also run `scoop install openssl` in order to get the necessary openssl dlls. Installing wrangler with `npm` instead of cargo is another option if you don't want to install perl.
+Apa itu hybrid cloud?
+Agak sedikit teknis, ada cloud publik, cloud pribadi, hybrid cloud, dan multicloud.
 
-## Updating
+- Cloud publik
 
-For information regarding updating Wrangler, click [here](https://developers.cloudflare.com/workers/cli-wrangler/install-update#update).
+Cloud publik merujuk pada layanan cloud yang dapat digunakan setiap orang. Layanan Dropbox, misalnya, semuanya adalah layanan cloud publik. Siapa saja yang menggunakan Dropbox itu sama seperti menyewa sebagian dari ruang servernya, sehingga cloud publik dapat dilihat sebagai sebuah lingkungan bersama, seperti kantor besar namun semua orang memiliki meja dan lemarinya sendiri-sendiri.
 
-## Getting Started
+- Cloud pribadi 
 
-Once you have installed Wrangler, spinning up and deploying your first Worker is easy!
+Cloud pribadi sangat berbeda, karena mesin virtual dan semua infrastruktur cloud akan dikhususkan bagi satu pelanggan. Anda masih dapat men-hosting semuanya melalui internet, namun server yang men-hosting data Anda akan menjadi milik Anda dan hanya diri Anda. Sebagian orang mungkin memilih menggunakan cloud pribadi untuk keamanan tambahan, sementara sebagian orang lainnya mungkin perlu menggunakan cloud pribadi untuk performa, karena server yang men-hosting data Anda tidak akan dibagi ke beberapa pelanggan, dan model ini dapat memberi semua kuasa pemrosesannya untuk kebutuhan Anda.
 
-```console
-$ wrangler generate my-worker
-$ cd my-worker
-# update your wrangler.toml with your Cloudflare Account ID
-$ wrangler config
-$ wrangler publish
-```
+Cloud pribadi, tidak seperti cloud publik, juga memberi kontrol penuh kepada pelanggan mengenai cara server dikelola, diamankan, dan dicadangkan. Meski kebanyakan orang kemungkinan besar menggunakan cloud publik, cloud pribadi pasti lebih memilih mereka yang menangani data besar, yang berukuran sampai petabita.
 
-## 🎙️ Top Level Commands
+- Hybrid cloud 
 
-### 👯 `generate`
+Hybrid cloud memanfaatkan server internal dan cloud publik, agar Anda dapat menyimpan dokumen lebih besar atau pribadi di cloud pribadi, namun tetap menyimpan yang lainnya di cloud publik.
 
-  Scaffold a project, including boilerplate code for a Rust library and a Cloudflare Worker.
+- Multicloud
 
-  ```bash
-  wrangler generate <name> <template> --type=["webpack", "javascript", "rust"]
-  ```
+Multicloud adalah ketika sebuah bisnis menggunakan beberapa cloud publik yang berbeda dan tidak menggunakan dari cloud pribadi dan publik seperti hybrid. Ini pada umumnya terjadi karena layanan cloud yang berbeda akan menawarkan layanan berbeda dan satu bisnis mungkin membutuhkan semuanya.
 
-  All of the arguments and flags to this command are optional:
+### Manfaat cloud bagi bisnis
 
-  - `name`: defaults to `worker`
-  - `template`: defaults to the [`https://github.com/cloudflare/worker-template`](https://github.com/cloudflare/worker-template)
-  - `type`: defaults to `javascript` based on the ["worker-template"](https://github.com/cloudflare/worker-template/blob/master/wrangler.toml)
+Dalam hal bisnis, manfaat cloud computing bisa lebih dari sekadar solusi penyimpanan sederhana. Cloud computing telah menjadi penggerak esensial dari produktivitas, efisiensi, pertumbuhan, dan pengorganisasian tempat kerja modern. Beberapa manfaat cloud computing bagi bisnis adalah:
 
-### 📥 `init`
+- Biaya: Melakukan semuanya di perangkat Anda sendiri bisa jadi sangat mahal. Dengan layanan awan, tidak lagi perlu mengelola sistem dan peralatan TI di lokasi Anda sendiri. Sebagai layanan yang dibayar sesuai penggunaan, komputasi awan bukan hanya akan banyak mengurangi biaya perangkat keras, tetapi juga biaya sumber daya manusia dan penggunaan listrik. Selain itu, berkurangnya waktu yang dihabiskan untuk mengatasi masalah TI akan memberi lebih banyak waktu untuk berfokus pada tujuan Anda.
+- Pemulihan bencana: Mencadangkan semua file dan data penting Anda ke awan memberi perlindungan ekstra yang sangat penting. Anda menghadapi risiko yang besar jika menyimpan semuanya di satu tempat saja—peristiwa bencana alam, pemadaman listrik tiba-tiba, hingga serangan malware bisa membuat Anda kehilangan semuanya dalam waktu singkat. Oleh karena itu, penyimpanan awan memberikan layanan yang sangat penting dengan mencadangkan data Anda di beberapa server di berbagai lokasi.
+- Perlindungan dan keamanan data: Terlepas dari apa yang diyakini beberapa orang, layanan komputasi awan memberikan keamanan awan yang sangat baik untuk data pribadi Anda. Anda mungkin menganggap bahwa menyimpan semua data di tempat yang bisa Anda lihat akan lebih aman, tetapi bayangkanlah penyimpanan awan itu seperti brankas di bank. Penyedia layanan awan akan memprioritaskan keamanan dan perlindungan data Anda yang akan dienkripsi. Dalam banyak kasus, Anda masih dapat menentukan pengaturan keamanan penyimpanan awan Anda sendiri. Sama seperti brankas di bank yang dirancang sebagai cara teraman untuk menyimpan barang berharga, penyimpanan awan dirancang menjadi cara teraman untuk menyimpan data.
+- Skalabilitas: Komputasi awan menawarkan fleksibilitas ekstra kepada bisnis untuk berkembang, atau dalam beberapa kasus untuk melakukan perampingan. Semakin besar bisnis Anda, semakin besar pula ruang, waktu, dan uang yang dibutuhkan untuk menjalankannya. Dapat menggunakan cloud sesuai kebutuhan dan saat dibutuhkan akan menyediakan lingkungan virtual yang memfasilitasi pertumbuhan ini. Sebaliknya, ketika bisnis mengalami penurunan, Anda tahu bahwa Anda tidak perlu membayar peralatan atau sumber daya yang tidak lagi dibutuhkan, karena dengan layanan komputasi awan Anda hanya membayar sesuai penggunaan.
+- Fleksibilitas: Setelah semuanya yang disimpan dan dijalankan lewat awan, maka Anda bisa leluasa bekerja dari mana pun di seluruh dunia. Seiring dengan konsep tempat kerja tradisional yang terus berkembang dengan cepat, komputasi awan memiliki peran yang sangat fundamental agar perusahaan dapat berjalan secara virtual. Komputasi awan juga memfasilitasi kemampuan mengakses dan mengerjakan file dan data dari perangkat seluler, yang semakin penting.
+- Kolaborasi: Demikian juga, bisa menyimpan file di awan serta membuat dan mengeditnya di awan mendorong kolaborasi yang lebih efisien. Dengan komputasi awan, Anda dapat memiliki sebuah tim beranggotakan sepuluh orang yang mengerjakan dokumen yang sama dari lokasi berbeda, sehingga manajemen organisasi dan sumber daya di dalam tim menjadi lebih mudah.
+Kelebihan cloud computing untuk penggunaan pribadi
+Di luar penggunaan untuk kantor, ada banyak cara anda dapat memperoleh manfaat dari penggunaan solusi cloud di rumah. Kelebihan paling jelas tentu saja adalah ruang yang akan Anda hemat. Jika saat ini Anda belum memanfaatkan penyimpanan cloud, sebagian besar file Anda mungkin disimpan di komputer atau smartphone. Jika Anda kehabisan ruang di perangkat itu, Anda dapat memilih hard disk eksternal, dan jika itu pun juga akhirnya penuh, Anda akan membeli hard disk eksternal kedua, dan seterusnya. Tiba-tiba, semuanya menjadi lebih rumit ketika Anda harus mencari dokumen lama yang sangat Anda butuhkan.
 
-  Creates a skeleton `wrangler.toml` in an existing directory. This can be used as an alternative to `generate` if you prefer to clone a repository yourself.
+Menyimpan semua file Anda di satu tempat virtual, yang sama sekali tidak menghabiskan ruang pribadi Anda akan membantu menata dan mengontrol semua yang Anda simpan, sembari menghemat uang karena tidak perlu memberi perangkat keras. Performa perangkat Anda juga akan meningkat jika banyak file Anda dipindahkan ke cloud.
 
-  ```bash
-  wrangler init <name> --type=["webpack", "javascript", "rust"]
-  ```
+Sementara itu, perangkat lunak ramah pengguna berbasis cloud seperti Dropbox Paper—tidak seperti aplikasi yang perlu diunduh dan diinstal—juga akan menghemat banyak ruang dan menjaga semuanya tetap tertata dengan baik. Banyak dari perangkat lunak ini yang dapat digunakan pada aplikasi mobile atau web, sehingga memakai perangkat lunak berbasis cloud berarti bahwa Anda dapat bekerja dan berkreasi dari perangkat mana saja—dari mana saja.
 
-  All of the arguments and flags to this command are optional:
+Berbagi dengan orang yang Anda sayangi juga akan jauh lebih mudah, sehingga misalnya Anda bisa menyiapkan album foto kolaboratif yang bisa diakses oleh siapa saja di keluarga Anda.
 
-  - `name`: defaults to the name of your working directory
-  - `type`: defaults to ["webpack"](https://developers.cloudflare.com/workers/tooling/wrangler/webpack).
+### Manfaat cloud computing
 
-### 🦀⚙️ `build`
 
-  Build your project. This command looks at your `wrangler.toml` file and runs the build steps associated
-  with the `"type"` declared there.
-
-  Additionally, you can configure different [environments](https://developers.cloudflare.com/workers/tooling/wrangler/configuration/environments).
-
-
-### 🔓 `login`
-
-  Authorize Wrangler with your Cloudflare login. This will prompt you with a Cloudflare account login page and a permissions consent page. 
-  This command is the alternative to `wrangler config` and it uses OAuth tokens.
-
-  ```bash
-  wrangler login --scopes-list --scopes <scopes>
-  ```
-
-  All of the arguments and flags to this command are optional:
-
-  - `scopes-list`: list all the available OAuth scopes with descriptions.
-  - `scopes`: allows to choose your set of OAuth scopes.
-
-  Read more about this command in [Wrangler Login Documentation](https://developers.cloudflare.com/workers/cli-wrangler/commands#login).
-
-
-### 🔧 `config`
-
-  Authenticate Wrangler with a Cloudflare API Token. This is an interactive command that will prompt you for your API token:
-
-  ```bash
-  wrangler config
-  Enter API token:
-  superlongapitoken
-  ```
-
-  You can also provide your email and global API key (this is not recommended for security reasons):
-
-  ```bash
-  wrangler config --api-key
-  Enter email:
-  testuser@example.com
-  Enter global API key:
-  superlongapikey
-  ```
-
-  You can also [use environment variables](https://developers.cloudflare.com/workers/tooling/wrangler/configuration/) to configure these values.
-
-### ☁️ 🆙 `publish`
-
-  Publish your Worker to Cloudflare. Several keys in your `wrangler.toml` determine whether you are publishing to a workers.dev subdomain or your own registered domain, proxied through Cloudflare.
-
-  Additionally, you can configure different [environments](https://developers.cloudflare.com/workers/tooling/wrangler/configuration/environments).
-
-  You can also use environment variables to handle authentication when you publish a Worker.
-
-  ```bash
-  # e.g.
-  CF_API_TOKEN=superlongtoken wrangler publish
-  # where
-  # $CF_API_TOKEN -> your Cloudflare API token
-
-  CF_API_KEY=superlongapikey CF_EMAIL=testuser@example.com wrangler publish
-  # where
-  # $CF_API_KEY -> your Cloudflare API key
-  # $CF_EMAIL -> your Cloudflare account email
-  ```
-
-### 🗂 `kv`
-
-  Interact with your Workers KV store. This is actually a whole suite of subcommands. Read more about in [Wrangler KV Documentation](https://developers.cloudflare.com/workers/cli-wrangler/commands#kv).
-
-### 👂 `dev`
-
-  `wrangler dev` works very similarly to `wrangler preview` except that instead of opening your browser to preview your worker, it will start a server on localhost that will execute your worker on incoming HTTP requests. From there you can use cURL, Postman, your browser, or any other HTTP client to test the behavior of your worker before publishing it.
-
-  You should run wrangler dev from your worker directory, and if your worker makes any requests to a backend, you should specify the host with `--host example.com`.
-
-  From here you should be able to send HTTP requests to `localhost:8787` along with any headers and paths, and your worker should execute as expected. Additionally, you should see console.log messages and exceptions appearing in your terminal.
-
-  ```bash
-👂 Listening on http://localhost:8787
-  [2020-02-18 19:37:08] GET example.com/ HTTP/1.1 200 OK
-  ```
-
-  All of the arguments and flags to this command are optional:
-
-  - `env`: environment to build
-  - `host`: domain to test behind your worker. defaults to example.com
-  - `ip`: ip to listen on. defaults to localhost
-  - `port`: port to listen on. defaults to 8787
-
-## Additional Documentation
-
-All information regarding wrangler or Cloudflare Workers is located in the [Cloudflare Workers Developer Docs](https://developers.cloudflare.com/workers/). This includes:
-
-- Using wrangler [commands](https://developers.cloudflare.com/workers/tooling/wrangler/commands)
-- Wrangler [configuration](https://developers.cloudflare.com/workers/tooling/wrangler/configuration)
-- General documentation surrounding Workers development
-- All wrangler features such as Workers Sites and KV
-
-## ✨Workers Sites
-
-To learn about deploying static assets using `wrangler`, see the [Workers Sites Quickstart](https://developers.cloudflare.com/workers/sites/).
+Manfaat cloud computing terbukti entah Anda menggunakannya di rumah atau di tempat kerja: cloud dapat meningkatkan produktivitas, meningkatkan pengorganisasian, meningkatkan kolaborasi, dan mengurangi biaya—sembari menjaga data Anda tetap aman dan terlindungi.
