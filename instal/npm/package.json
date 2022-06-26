@@ -1,6 +1,6 @@
 {
   "name": "cloud-awdev",
-  "version": "1.19.11",
+  "version": "1.1.1",
   "description": "Command-line interface for all things Cloudflare Workers",
   "main": "binary.js",
   "scripts": {
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wahyu9kdl/cloud-awdev.workers.dev.git"
+    "url": "git@github.com:wahyu9kdl/cloud-awdev.git"
   },
   "author": "wrangler@cloudflare.com",
   "license": "MIT OR Apache-2.0",
   "bugs": {
-    "url": "https://github.com/wahyu9kdl/cloud-awdev.workers.dev/issues"
+    "url": "https://github.com/wahyu9kdl/cloud-awdev.git/issues"
   },
-  "homepage": "https://github.com/wahyu9kdl/cloud-awdev.workers.dev#readme",
+  "homepage": "https://github.com/wahyu9kdl/cloud-awdev/#readme",
   "keywords": [
     "wrangler",
     "cloudflare",
